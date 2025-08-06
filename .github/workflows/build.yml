@@ -57,6 +57,8 @@ jobs:
           push: false
           no-cache: true
           tags: builder:latest
+          build-args: |
+            VERSION=${{ env.VERSION }}
 
       - name: "Build image logseq-publish-spa ${{ env.GITHUB_SHA_SHORT }} (for version ${{ env.VERSION }})"
         uses: docker/build-push-action@v6
