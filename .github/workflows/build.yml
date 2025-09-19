@@ -44,7 +44,8 @@ jobs:
           export_ga GH_IMAGE_NAME="${GH_REGISTRY}/${GH_OWNER}/${IMAGE_NAME}"
 
           export_ga BUILD_DATE="$(TZ=Europe/Paris date -Iseconds)"
-          export_ga VERSION="$(curl -s https://api.github.com/repos/logseq/logseq/releases/latest | jq -r .tag_name | sed -e "s/^v//")"
+          # export_ga VERSION="$(curl -s https://api.github.com/repos/logseq/logseq/releases/latest | jq -r .tag_name | sed -e "s/^v//")"
+          export_ga VERSION="0.10.13"
           export_ga IMAGE_DESCRIPTION="Image for ${IMAGE_NAME} ( https://github.com/logseq/publish-spa )"
 
       - name: 'Login to github container registry'
