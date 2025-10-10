@@ -28,8 +28,12 @@ RUN set -x \
  && yarn gulp:build \
  && clojure -M:cljs release publishing \
  && ln -s /opt/logseq/ /logseq
+ && echo "#!/usr/bin/env bash" > /start.sh
+ && echo "logseq-publish-spa" >> /start.sh
+ && echo '[ -n "${PUBLISH_UID_GID}" ] && chown -R "${PUBLISH_UID_GID}" /export' >> /start.sh
+ && chmod +x /start.sh
 
 WORKDIR /repo
 VOLUME ["/repo","/export"]
-ENTRYPOINT ["logseq-publish-spa"]
+ENTRYPOINT ["/start.sh"]
 CMD ["/export"]
