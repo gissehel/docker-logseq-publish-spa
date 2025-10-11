@@ -31,7 +31,7 @@ RUN set -x \
  && echo "#!/usr/bin/env bash" > /start.sh \
  && echo "cd /repo" >> /start.sh \
  && echo "logseq-publish-spa /export" >> /start.sh \
- && echo '[ -n "${PUBLISH_UID_GID}" ] && chown -R "${PUBLISH_UID_GID}" /export' >> /start.sh \
+ && echo '[ -n "${PUBLISH_UID_GID}" ] && chown -R "${PUBLISH_UID_GID}" /export || echo -n ""' >> /start.sh \
  && chmod +x /start.sh
 
 WORKDIR /repo
